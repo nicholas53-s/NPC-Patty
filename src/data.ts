@@ -92,7 +92,7 @@ export const MENU: MenuItem[] = [
   },
   {
     name: `Neil's Bacon Club`,
-    note: 'A total flavor party! First, you get a giant hit of smoky warmth, then a loud, super-satisfying TEXTURE that snaps with every single bite.',
+    note: 'A total flavor party! First, you get a giant hit of SMOKY warmth, then a loud, super-satisfying TEXTURE that snaps with every single bite.',
     price: 'Rp76k',
     image: '/photos/menu/bacon-club.png',
   },
