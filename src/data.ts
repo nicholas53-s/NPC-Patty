@@ -80,7 +80,7 @@ export type MenuItem = {
 export const MENU: MenuItem[] = [
   {
     name: `Neil's Signature`,
-    note: 'Two juicy smashed beef patties, melted American cheese, signature NPC sauce, and soft toasted buns. Simple, timeless, and built to satisfy.',
+    note: 'Juicy beef patties, melted American cheese, signature NPC sauce, and soft toasted buns. Simple, timeless, and built to satisfy.',
     price: 'Rp50k',
     image: '/photos/menu/signature.png',
   },
