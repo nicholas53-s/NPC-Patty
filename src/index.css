@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-npc-red: #b8332a;
+  --color-npc-cream: #f5ebd7;
+  --color-charcoal: #1a100b;
+  --color-deep-red: #8c2018;
+  --color-smoke: #3a2a22;
+  --color-cheese: #e8a33d;
+
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-sub: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  /* Legacy CSS variables kept so the existing App.css keeps working while we
+     migrate components to Tailwind one by one. */
+  --npc-red: #b8332a;
+  --npc-cream: #f5ebd7;
+  --charcoal: #1a100b;
+  --deep-red: #8c2018;
+  --smoke: #3a2a22;
+  --cheese: #e8a33d;
+
+  --display: 'Anton', Impact, sans-serif;
+  --sub: 'Poppins', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+
+  color-scheme: light;
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--npc-cream);
+  color: var(--smoke);
+}
+
+#root {
+  min-height: 100svh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
