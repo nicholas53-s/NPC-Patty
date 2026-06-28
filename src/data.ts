@@ -37,7 +37,7 @@ export const HERO = {
     '/photos/IMG_3738_pro.jpg',
     '/photos/IMG_3641_pro.jpg',
     '/photos/IMG_3727_pro.jpg',
-    '/photos/IMG_3607_pro.png',
+    '/photos/IMG_3607_pro.jpg',
   ],
 };
 
@@ -77,26 +77,43 @@ export type MenuItem = {
   hot?: boolean;
 };
 
-export const MENU: MenuItem[] = [
-  {
-    name: `Neil's Signature`,
-    note: 'Juicy beef patty, melted American cheese, signature NPC sauce, and soft toasted buns. Simple, timeless, and built to satisfy.',
-    price: 'Rp50k',
-    image: '/photos/menu/signature.png',
-  },
-  {
-    name: `Neil's Double Stack`,
-    note: 'Double the beef. Double the cheese. Double the satisfaction. Two perfectly thick patties stacked high for those who believe more is more.',
-    price: 'Rp62k',
-    image: '/photos/menu/double-stack.png',
-  },
-  {
-    name: `Neil's Bacon Club`,
-    note: 'A total flavor party! First, you get a giant hit of SMOKY warmth, then a loud, super-satisfying TEXTURE that snaps with every single bite.',
-    price: 'Rp76k',
-    image: '/photos/menu/bacon-club.png',
-  },
+export type MenuType = 'burger' | 'fries';
+
+export const MENU_TABS: { id: MenuType; label: string }[] = [
+  { id: 'burger', label: 'Burgers' },
+  { id: 'fries', label: 'Fries' },
 ];
+
+export const MENU: Record<MenuType, MenuItem[]> = {
+  burger: [
+    {
+      name: `Neil's Signature`,
+      note: 'Juicy beef patty, melted American cheese, signature NPC sauce, and soft toasted buns. Simple, timeless, and built to satisfy.',
+      price: 'Rp50k',
+      image: '/photos/menu/signature.png',
+    },
+    {
+      name: `Neil's Double Stack`,
+      note: 'Double the beef. Double the cheese. Double the satisfaction. Two perfectly thick patties stacked high for those who believe more is more.',
+      price: 'Rp62k',
+      image: '/photos/menu/double-stack.png',
+    },
+    {
+      name: `Neil's Bacon Club`,
+      note: 'A total flavor party! First, you get a giant hit of SMOKY warmth, then a loud, super-satisfying TEXTURE that snaps with every single bite.',
+      price: 'Rp76k',
+      image: '/photos/menu/bacon-club.png',
+    },
+  ],
+  fries: [
+    {
+      name: `Neil's Fries`,
+      note: "Crisp on the outside. Fluffy in the middle. Salted just right with our special salt of course. The patty's best friend.",
+      price: 'Rp15k',
+      image: '/photos/menu/fries.png',
+    },
+  ],
+};
 
 // ── Gallery ───────────────────────────────────────────────────
 export const GALLERY_SECTION = {
@@ -134,7 +151,7 @@ export const GALLERY: GalleryTile[] = [
     alt: 'Bite cross-section',
     theme: 'light',
   },
-  { src: '/photos/IMG_3607_pro.png', alt: 'Three on the rack', theme: 'dark' },
+  { src: '/photos/IMG_3607_pro.jpg', alt: 'Three on the rack', theme: 'dark' },
   {
     src: '/photos/gallery/light-4.jpg',
     alt: 'Pull-apart in hand',

@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Deliverables not used by the web build (kept locally, excluded from repo/deploy)
+/edited-photos/
+/logos/

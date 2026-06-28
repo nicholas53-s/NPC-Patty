@@ -1,4 +1,30 @@
-import { GALLERY, GALLERY_SECTION } from '../data'
+import { useCallback, useState } from 'react'
+import { GALLERY, GALLERY_SECTION, type GalleryTile } from '../data'
+
+function Tile({ tile }: { tile: GalleryTile }) {
+  const [loaded, setLoaded] = useState(false)
+  // Handle images already cached on mount (onLoad may not fire for those).
+  const refCb = useCallback((node: HTMLImageElement | null) => {
+    if (node?.complete) setLoaded(true)
+  }, [])
+
+  return (
+    <figure
+      className={`tile tile--${tile.theme} ${loaded ? 'is-loaded' : 'is-loading'}`}
+    >
+      <img
+        ref={refCb}
+        className="tile__img"
+        src={tile.src}
+        alt={tile.alt}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+      />
+      <span className="tile__badge">NPC</span>
+    </figure>
+  )
+}
 
 export default function Gallery() {
   return (
@@ -10,15 +36,7 @@ export default function Gallery() {
       </div>
       <div className="gallery__grid">
         {GALLERY.map((tile) => (
-          <figure key={tile.src} className={`tile tile--${tile.theme}`}>
-            <img
-              className="tile__img"
-              src={tile.src}
-              alt={tile.alt}
-              loading="lazy"
-            />
-            <span className="tile__badge">NPC</span>
-          </figure>
+          <Tile key={tile.src} tile={tile} />
         ))}
       </div>
     </section>

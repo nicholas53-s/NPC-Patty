@@ -61,3 +61,21 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Deter casual image saving: block drag, selection, and iOS long-press menu.
+   Note: this only stops easy downloads, not determined users / DevTools. */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+/* keep images that must stay interactive (clickable menu cards) usable */
+.menu-card__img,
+.tile__img {
+  pointer-events: auto;
+}

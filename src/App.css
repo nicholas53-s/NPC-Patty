@@ -234,7 +234,8 @@ main section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__slides {
+  .hero__slides,
+  .menu__carousel {
     animation: none;
   }
 }
@@ -342,6 +343,35 @@ main section {
 .menu {
   background: #fff7e9;
 }
+/* Menu type toggle (Burgers / Fries) */
+.menu__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0 auto 2rem;
+}
+.menu__tab {
+  font-family: var(--sub);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid var(--npc-red);
+  background: transparent;
+  color: var(--npc-red);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+.menu__tab:hover {
+  transform: translateY(-2px);
+}
+.menu__tab.is-active {
+  background: var(--npc-red);
+  color: var(--npc-cream);
+}
+
 /* Peek carousel: active card centred, neighbours peeking left & right (web).
    On mobile only the active card shows (swipe to change). */
 .menu__carousel {
@@ -351,6 +381,17 @@ main section {
   margin: 0 auto;
   overflow: hidden;
   touch-action: pan-y; /* let vertical scroll through, capture horizontal swipe */
+  animation: menuTypeFade 0.4s ease; /* fade-in-up on type switch (keyed by type) */
+}
+@keyframes menuTypeFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .menu-card {
   position: absolute;
@@ -417,16 +458,20 @@ main section {
   }
 }
 .menu-card__imgwrap {
-  width: 200px;
+  width: 220px;
   height: 200px;
   margin: -70px auto 0.6rem; /* pull image up so it sits above the name */
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .menu-card__img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%; /* hard cap so tall images never overflow the card */
   object-fit: contain;
+  display: block;
   filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.5));
 }
 .menu-card__name {
@@ -797,4 +842,61 @@ main section {
   width: 72px;
   height: auto;
   margin: 0 auto 0.7rem;
+}
+
+/* ---------- Image loading: lazy + shimmer skeleton ---------- */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Gallery tiles */
+.tile.is-loading {
+  background-image: linear-gradient(
+    100deg,
+    rgba(245, 235, 215, 0.04) 25%,
+    rgba(245, 235, 215, 0.14) 45%,
+    rgba(245, 235, 215, 0.04) 65%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+.tile__img {
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.4s ease;
+}
+.tile.is-loaded .tile__img {
+  opacity: 1;
+}
+
+/* Menu card image */
+.menu-card__imgwrap.is-loading {
+  border-radius: 18px;
+  background-color: rgba(245, 235, 215, 0.05);
+  background-image: linear-gradient(
+    100deg,
+    rgba(245, 235, 215, 0.04) 25%,
+    rgba(245, 235, 215, 0.16) 45%,
+    rgba(245, 235, 215, 0.04) 65%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+.menu-card__img {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.menu-card__imgwrap.is-loaded .menu-card__img {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile.is-loading,
+  .menu-card__imgwrap.is-loading {
+    animation: none;
+  }
 }
